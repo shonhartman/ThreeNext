@@ -9,6 +9,7 @@ const LControl = () => {
 
   useEffect(() => {
     if (control.current) {
+      // @ts-ignore
       const domElement = dom.current
       const originalTouchAction = domElement.style['touch-action']
       domElement.style['touch-action'] = 'none'
