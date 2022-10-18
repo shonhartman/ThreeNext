@@ -9,7 +9,7 @@ const Box = dynamic(() => import('@/components/canvas/Box'), {
 const Page = (props) => {
   return (
     <>
-      <Instructions />
+      <h1 className='mx-auto text-center w-100'>{props.title}</h1>
     </>
   )
 }

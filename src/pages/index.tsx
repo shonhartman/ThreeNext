@@ -15,7 +15,7 @@ const Shader = dynamic(() => import('@/components/canvas/Shader/Shader'), {
 const Page = (props) => {
   return (
     <>
-      <Instructions />
+      <h1 className='mx-auto text-center w-100'>{props.title}</h1>
     </>
   )
 }
