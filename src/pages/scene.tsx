@@ -1,8 +1,8 @@
-import Instructions from '@/components/dom/Instructions'
+// import Scene from '@/components/canvas/Scene'
 import dynamic from 'next/dynamic'
 import router from 'next/router'
 
-const Box = dynamic(() => import('@/components/canvas/Box'), {
+const Scene = dynamic(() => import('@/components/canvas/Scene'), {
   ssr: false,
 })
 
@@ -27,7 +27,7 @@ const Page = (props) => {
 
 Page.r3f = (props) => (
   <>
-    <Box />
+    <Scene />
   </>
 )
 
@@ -36,7 +36,7 @@ export default Page
 export async function getStaticProps() {
   return {
     props: {
-      title: 'Box',
+      title: 'Scene',
     },
   }
 }

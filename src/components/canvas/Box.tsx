@@ -2,7 +2,7 @@ import { useFrame } from '@react-three/fiber'
 import { useRouter } from 'next/router'
 import { useRef, useState } from 'react'
 
-const BoxComponent = ({ route }) => {
+const BoxComponent = () => {
   const router = useRouter()
   // This reference will give us direct access to the THREE.Mesh object
   const mesh = useRef(null)
@@ -19,13 +19,12 @@ const BoxComponent = ({ route }) => {
     <>
       <mesh
         ref={mesh}
-        onClick={() => router.push(route)}
         onPointerOver={() => setHover(true)}
         onPointerOut={() => setHover(false)}
         scale={hovered ? 1.1 : 1}
       >
         <boxBufferGeometry args={[1, 1, 1]} />
-        <meshPhysicalMaterial color={route === '/' ? 'orange' : 'hotpink'} />
+        <meshPhysicalMaterial />
       </mesh>
       <directionalLight position={[5, 5, 5]} />
       <ambientLight />

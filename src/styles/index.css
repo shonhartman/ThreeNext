@@ -17,3 +17,7 @@
     overflow: hidden;
   }
 }
+
+canvas {
+  background-color: #06092c;
+}

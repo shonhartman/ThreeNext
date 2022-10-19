@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 // Step 5 - delete Instructions components
 import Instructions from '@/components/dom/Instructions'
+import router from 'next/router'
 // import Shader from '@/components/canvas/Shader/Shader'
 
 // Dynamic import is used to prevent a payload when the website start that will include threejs r3f etc..
@@ -15,7 +16,33 @@ const Shader = dynamic(() => import('@/components/canvas/Shader/Shader'), {
 const Page = (props) => {
   return (
     <>
-      <h1 className='mx-auto text-center w-100'>{props.title}</h1>
+      {/* <h1 className='mx-auto text-center w-100'>{props.title}</h1> */}
+      <div className='flex justify-center'>
+        <button
+          onClick={() => {
+            router.push(`/box`)
+          }}
+          className='px-4 py-2 mx-auto mt-5 font-bold text-center text-white bg-blue-500 rounded w-100 hover:bg-blue-700'
+        >
+          Cube
+        </button>
+        <button
+          onClick={() => {
+            router.push(`/scene`)
+          }}
+          className='px-4 py-2 mx-auto mt-5 font-bold text-center text-white bg-blue-500 rounded w-100 hover:bg-blue-700'
+        >
+          Scene
+        </button>
+        <button
+          onClick={() => {
+            router.push(`/noise`)
+          }}
+          className='px-4 py-2 mx-auto mt-5 font-bold text-center text-white bg-blue-500 rounded w-100 hover:bg-blue-700'
+        >
+          Noise
+        </button>
+      </div>
     </>
   )
 }

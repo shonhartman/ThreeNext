@@ -1,8 +1,9 @@
-import Instructions from '@/components/dom/Instructions'
+// import Scene from '@/components/canvas/Scene'
+import Noise from '@/components/canvas/Noise/Noise'
 import dynamic from 'next/dynamic'
 import router from 'next/router'
 
-const Box = dynamic(() => import('@/components/canvas/Box'), {
+const Scene = dynamic(() => import('@/components/canvas/Scene'), {
   ssr: false,
 })
 
@@ -10,7 +11,6 @@ const Box = dynamic(() => import('@/components/canvas/Box'), {
 const Page = (props) => {
   return (
     <>
-      {/* <h1 className='mx-auto text-center w-100'>{props.title}</h1> */}
       <div className='flex justify-center'>
         <button
           onClick={() => {
@@ -27,7 +27,7 @@ const Page = (props) => {
 
 Page.r3f = (props) => (
   <>
-    <Box />
+    <Noise />
   </>
 )
 
@@ -36,7 +36,7 @@ export default Page
 export async function getStaticProps() {
   return {
     props: {
-      title: 'Box',
+      title: 'Noise',
     },
   }
 }
