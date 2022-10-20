@@ -3,6 +3,7 @@ import { useRef, useState } from 'react'
 import * as THREE from 'three'
 import { Extrude, OrbitControls, Center } from '@react-three/drei'
 import React from 'react'
+import { Canvas } from '@react-three/fiber'
 
 const extrudeSettings = { steps: 2, depth: 10, bevelEnabled: false }
 const SIDE = 10
@@ -35,7 +36,6 @@ const Block = (props) => {
           clearcoatRoughness={1}
           transmission={0.8}
           ior={1.25}
-          attenuationTint='#fff'
           attenuationDistance={0}
         />
       </Extrude>
@@ -52,13 +52,12 @@ const Scene = () => {
 
   return (
     <>
-      <mesh
+      <Canvas
         dpr={window.devicePixelRatio}
         camera={{ position: new THREE.Vector3(8, 5, 40) }}
         ref={mesh}
         onPointerOver={() => setHover(true)}
         onPointerOut={() => setHover(false)}
-        scale={1}
       >
         <color attach='background' args={['#06092c']} />
         <pointLight position={[-20, 10, 25]} />
@@ -69,7 +68,7 @@ const Scene = () => {
         />
         <Block />
         <OrbitControls autoRotate autoRotateSpeed={3} />
-      </mesh>
+      </Canvas>
     </>
   )
 }

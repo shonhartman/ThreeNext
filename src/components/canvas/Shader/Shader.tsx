@@ -1,30 +1,46 @@
 import * as THREE from 'three'
-import { useFrame, extend } from '@react-three/fiber'
-import { useRef, useState } from 'react'
+import {
+  useFrame,
+  extend,
+  Object3DNode,
+  MaterialNode,
+  BufferGeometryNode,
+  SphereBufferGeometryProps,
+} from '@react-three/fiber'
+import { MutableRefObject, useRef, useState } from 'react'
 import { shaderMaterial } from '@react-three/drei'
 
 import vertex from './glsl/shader.vert'
 import fragment from './glsl/shader.frag'
 import { useRouter } from 'next/router'
 
-const ColorShiftMaterial = shaderMaterial(
+// Add types to ThreeElements elements so primitives pick up on it
+declare module '@react-three/fiber' {
+  interface ThreeElements {
+    colorShiftMaterial: MaterialNode<
+      ColorShiftMaterial,
+      typeof ColorShiftMaterial
+    >
+  }
+}
+
+class ColorShiftMaterial extends shaderMaterial(
   {
     time: 0,
     color: new THREE.Color(0.05, 0.0, 0.025),
   },
   vertex,
   fragment
-)
+) {}
 
 // This is the 🔑 that HMR will renew if this file is edited
 // It works for THREE.ShaderMaterial as well as for drei/shaderMaterial
-// @ts-ignore
 ColorShiftMaterial.key = THREE.MathUtils.generateUUID()
 
 extend({ ColorShiftMaterial })
 
 const Shader = (props) => {
-  const meshRef = useRef(null)
+  const meshRef = useRef<SphereBufferGeometryProps>(null)
   const [hovered, setHover] = useState(false)
   const router = useRouter()
 
@@ -42,13 +58,12 @@ const Shader = (props) => {
     <mesh
       ref={meshRef}
       scale={hovered ? 1.1 : 1}
-      onPointerOver={(e) => setHover(true)}
-      onPointerOut={(e) => setHover(false)}
+      onPointerOver={() => setHover(true)}
+      onPointerOut={() => setHover(false)}
       {...props}
     >
       <sphereBufferGeometry />
-      {/* @ts-ignore */}
-      <colorShiftMaterial key={ColorShiftMaterial.key} time={3} />
+      {/* <colorShiftMaterial key={ColorShiftMaterial.key} time={3} /> */}
     </mesh>
   )
 }

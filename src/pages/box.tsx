@@ -7,7 +7,7 @@ const Box = dynamic(() => import('@/components/canvas/Box'), {
 })
 
 // Step 5 - delete Instructions components
-const Page = (props) => {
+const Page = () => {
   return (
     <>
       {/* <h1 className='mx-auto text-center w-100'>{props.title}</h1> */}
@@ -25,7 +25,7 @@ const Page = (props) => {
   )
 }
 
-Page.r3f = (props) => (
+Page.r3f = () => (
   <>
     <Box />
   </>

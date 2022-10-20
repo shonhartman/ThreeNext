@@ -1,14 +1,7 @@
-// import Scene from '@/components/canvas/Scene'
 import Noise from '@/components/canvas/Noise/Noise'
-import dynamic from 'next/dynamic'
 import router from 'next/router'
 
-const Scene = dynamic(() => import('@/components/canvas/Scene'), {
-  ssr: false,
-})
-
-// Step 5 - delete Instructions components
-const Page = (props) => {
+const Page = () => {
   return (
     <>
       <div className='flex justify-center'>
@@ -25,7 +18,7 @@ const Page = (props) => {
   )
 }
 
-Page.r3f = (props) => (
+Page.r3f = () => (
   <>
     <Noise />
   </>
