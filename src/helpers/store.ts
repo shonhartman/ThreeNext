@@ -1,7 +1,7 @@
 import create from 'zustand'
 import shallow from 'zustand/shallow'
 
-const useStoreImpl = create(() => {
+const useStoreImpl = create<any>(() => {
   return {
     dom: null,
   }
